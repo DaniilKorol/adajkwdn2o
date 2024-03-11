@@ -15,7 +15,7 @@ def generation_pass(num=10):
 def check_email(email):
     while True:
         response = requests.get(f'https://www.1secmail.com/api/v1/?action=getMessages&login={email.split("@")[0]}&domain={email.split("@")[1]}')
-        if len(response.json()) > 0:
+        if len(response.text) > 0:
             response = requests.get(f'https://www.1secmail.com/api/v1/?action=readMessage&login={email.split("@")[0]}&domain={email.split("@")[1]}&id={response.json()[0]["id"]}').text
             #verif_code = response.json()['body'].replace('<p>Dear user,Your registration verification code is:</p>\n<p style="font-family: Arial, sans-serif; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">\n  <strong>','').replace('</strong>\n</p>\n<p>The verification code is only valid for <strong>5minute</strong>.</p>\n<p>If you are not registering, please ignore this email.</p>\n', '')
             pattern = r'Verification Code: <strong>(\d{6})|\n Verification Code: (\d{6})\n'
