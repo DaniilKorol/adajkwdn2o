@@ -72,7 +72,7 @@ while True:
 """
 
 threads = []
-for i in range(1):
+for i in range(1600):
     thread = threading.Thread(target=generation_acc_gpt)
     thread.start()
     threads.append(thread)
